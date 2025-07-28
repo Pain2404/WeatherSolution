@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  weatherproviderapi:
+    build:
+      context: .
+      dockerfile: WeatherProvider.Api/Dockerfile
+    ports:
+      - "5000:80"
+
+  weatherapi:
+    build:
+      context: .
+      dockerfile: Weather.Api/Dockerfile
+    ports:
+      - "5050:80"
+    depends_on:
+      - weatherproviderapi
